@@ -1,0 +1,18 @@
+CREATE TABLE "tb_user" (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE "tb_book" (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    published_date DATE,
+    isbn VARCHAR(13) UNIQUE,
+    user_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES "tb_user" (id) ON DELETE SET NULL
+);
